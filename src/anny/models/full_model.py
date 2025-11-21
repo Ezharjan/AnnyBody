@@ -440,11 +440,10 @@ def create_model(rig = "default",
                                 cache_dirname=cache_dirname)
 
         # Filter out local changes that are not needed
-        local_changes_mask = [True] * len(cached_dict["local_change_labels"])
-        if local_changes == False:
-            local_changes_mask = [False] * len(cached_dict["local_change_labels"])
+        local_changes_mask = [False] * len(cached_dict["local_change_labels"])
+        if local_changes == True:
+            local_changes_mask = [True] * len(cached_dict["local_change_labels"])
         elif isinstance(local_changes, list) or isinstance(local_changes, tuple):
-            local_changes_mask = [False] * len(cached_dict["local_change_labels"])
             for label in local_changes:
                 i = cached_dict["local_change_labels"].index(label)
                 local_changes_mask[i] = True

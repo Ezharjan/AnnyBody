@@ -23,7 +23,7 @@ class TestDegenerateConfiguration(unittest.TestCase):
                 'asian': 0.3333, 
                 'caucasian': 0.3333, 
             }
-        model = anny.create_fullbody_model(tongue=True).to(dtype=torch.float32)
+        model = anny.create_fullbody_model().to(dtype=torch.float32)
 
         def return_tongue_pose(shape):
             shape = {k: torch.Tensor([v]) for k, v in shape.items()}

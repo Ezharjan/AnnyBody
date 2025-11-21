@@ -132,20 +132,22 @@ def main(server_name : str = None, server_port : int = None):
             Initialize the model and return a dropdown with bone labels.
             """
             nonlocal model, measurements_class, bones_rotvec, phenotype_kwargs, local_changes_kwargs, self_intersection_module
-            if model_type == "fullbody":
-                model = anny.create_fullbody_model(rig=rig, eyes=True, tongue=False, local_changes=True, extrapolate_phenotypes=extrapolate_phenotypes)
+            if model_type == "default":
+                model = anny.create_fullbody_model(rig=rig, topology="default", local_changes=True, extrapolate_phenotypes=extrapolate_phenotypes)
+            elif model_type == "notoes_collapse10pc":
+                model = anny.create_fullbody_model(rig=rig, topology="notoes_collapse10pc", local_changes=True, extrapolate_phenotypes=extrapolate_phenotypes, remove_unattached_vertices=True)
+            elif model_type == "notoes_collapse5pc":
+                model = anny.create_fullbody_model(rig=rig, topology="notoes_collapse5pc", local_changes=True, extrapolate_phenotypes=extrapolate_phenotypes, remove_unattached_vertices=True)                
             elif model_type == "right hand":
                 model = anny.create_hand_model(side='R', extrapolate_phenotypes=extrapolate_phenotypes)
             elif model_type == "left hand":
                 model = anny.create_hand_model(side='L', extrapolate_phenotypes=extrapolate_phenotypes)
             elif model_type == "head":
                 model = anny.create_head_model(eyes=True, tongue=True, local_changes=True, extrapolate_phenotypes=extrapolate_phenotypes)
-            elif model_type == "expressionless":
-                model = anny.create_expressionless_model(rig=rig, eyes=True, tongue=False, extrapolate_phenotypes=extrapolate_phenotypes)
             else:
                 raise ValueError(f"Invalid model type: {model_type}")
             
-            if model_type in ["fullbody", "expressionless"]:
+            if model_type in ["default"]:
                 measurements_class = anny.anthropometry.Anthropometry(model)
             else:
                 measurements_class = None
@@ -186,7 +188,7 @@ def main(server_name : str = None, server_port : int = None):
             model3d = gr.Model3D(value=filename, height="100vh")
             return description, phenotype_dropdown, macrodetail_slider, local_change_dropdown, local_changes_slider, reset_shape_button, bone_dropdown, x_slider, y_slider, z_slider, reset_pose_button, model3d, measurements_summary
 
-        default_model_value = "fullbody"
+        default_model_value = "default"
         default_rig_value = "default"
         show_bones_checkbox = gr.Checkbox(label="Show bones", value=show_bones, visible=True, interactive=True)
         show_self_intersections_checkbox = gr.Checkbox(label="Show self intersections", value=False, visible=True, interactive=True)
@@ -198,9 +200,9 @@ def main(server_name : str = None, server_port : int = None):
             with gr.Row():
                 with gr.Column("compact", elem_id="control-column"):
                     model_dropdown = gr.Dropdown(label="Model",
-                                                    choices=["fullbody", "left hand", "right hand", "head", "expressionless"], value=default_model_value)
-                    rig_dropdown = gr.Dropdown(label="Rig type",
-                                                    choices=["default", "mixamo"],
+                                                    choices=["default", "left hand", "right hand", "head", "notoes_collapse10pc", "notoes_collapse5pc"], value=default_model_value)
+                    rig_dropdown = gr.Dropdown(label="Rig",
+                                                    choices=["default", "mixamo", "default-noeyes-notongue-noexpression-nobreasts-notoes", "default-noeyes-notongue-noexpression-nobreasts-notoes-nohands"],
                                                     value=default_rig_value)
                     show_bones_checkbox.render()
                     show_self_intersections_checkbox.render()

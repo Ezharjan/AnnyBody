@@ -14,16 +14,25 @@ Anny models a large variety of human body shapes, from infants to elders, using 
 - We provide both full body and part-specific models for hands and faces.
 - Anny is open-source and free.
 
+### News
+ - **2025-11-21**: support for different mesh topologies.
+ - **2025-11-05**: initial release.
+
 ## Installation
 
-Full installation (uses warp-lang, which sometimes requires some manual work to install):
+Full installation (depends on warp-lang, which may require some manual work to install):
 ```bash
-pip install anny[warp,examples]@git+https://github.com/naver/anny.git
+pip install anny[warp,examples]
 ```
 
-Minimal dependency installation:
+Minimal dependency installation (will use more memory with large batch sizes):
 ```bash
-pip install anny@git+https://github.com/naver/anny.git
+pip install anny
+```
+
+Installation from latest sources:
+```bash
+pip install anny[warp,examples]@git+https://github.com/naver/anny.git
 ```
 
 ## Tutorials

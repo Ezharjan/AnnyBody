@@ -64,7 +64,6 @@ def load_obj_file(mesh_filename,
         groups[group_name] = dict(face_vertex_indices=as_tensor(face_vertex_indices),
                                   face_texture_coordinate_indices=as_tensor(face_texture_coordinate_indices))
     
-    # Vertices were expressed in decimeters
     vertices = as_tensor(vertices, dtype=dtype)
     if len(texture_coordinates) > 0:
         texture_coordinates = as_tensor(texture_coordinates, dtype=dtype)
