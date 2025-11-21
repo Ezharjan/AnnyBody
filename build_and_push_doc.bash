@@ -20,7 +20,7 @@ bash build_doc.bash
 git add docs/ -f
 # Commit the changes and push them, without the pre-commit hook that clean up the notebooks
 git commit -m "Build documentation"
-git push origin docs --force
+git push public docs --force
 
 # Back to the current branch
 git checkout $branch
