@@ -18,7 +18,8 @@ license-files = ["LICENSE", "LICENSE_THINGS"]
 dependencies = [
     "torch>=2.0.0",
     "roma>=1.5.2.1",
-    "numpy"
+    "numpy",
+    "pyyaml",
 ]
 
 [tool.setuptools.packages.find]
@@ -34,7 +35,8 @@ include-package-data = true
 examples = [
     "gradio",
     "jsonargparse",
-    "trimesh"
+    "trimesh",
+    "requests"
 ]
 warp = [
     "warp-lang"

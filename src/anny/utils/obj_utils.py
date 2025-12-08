@@ -46,7 +46,6 @@ def load_obj_file(mesh_filename,
                     group_name = split[1]
                     if group_name in groups:
                         # Continue adding to existing group
-                        print("Warning: group {} already exists, continuing to add faces to it.".format(group_name))
                         face_vertex_indices = groups[group_name]['face_vertex_indices'].numpy().tolist()
                         face_texture_coordinate_indices = groups[group_name]['face_texture_coordinate_indices'].numpy().tolist()
                     else:

@@ -138,8 +138,6 @@ def main(server_name : str = None, server_port : int = None):
                 model = anny.create_fullbody_model(rig=rig, topology="notoes_collapse10pc", local_changes=True, extrapolate_phenotypes=extrapolate_phenotypes, remove_unattached_vertices=True)
             elif model_type == "notoes_collapse5pc":
                 model = anny.create_fullbody_model(rig=rig, topology="notoes_collapse5pc", local_changes=True, extrapolate_phenotypes=extrapolate_phenotypes, remove_unattached_vertices=True)                
-            elif model_type == "smplx":
-                model = anny.create_fullbody_model(rig=rig, topology="smplx", local_changes=True, extrapolate_phenotypes=extrapolate_phenotypes, remove_unattached_vertices=True)
             elif model_type == "right hand":
                 model = anny.create_hand_model(side='R', extrapolate_phenotypes=extrapolate_phenotypes)
             elif model_type == "left hand":
@@ -202,7 +200,7 @@ def main(server_name : str = None, server_port : int = None):
             with gr.Row():
                 with gr.Column("compact", elem_id="control-column"):
                     model_dropdown = gr.Dropdown(label="Topology",
-                                                    choices=["default", "smplx", "left hand", "right hand", "head", "notoes_collapse10pc", "notoes_collapse5pc"], value=default_model_value)
+                                                    choices=["default", "left hand", "right hand", "head", "notoes_collapse10pc", "notoes_collapse5pc"], value=default_model_value)
                     rig_dropdown = gr.Dropdown(label="Rig",
                                                     choices=["default", "mixamo", "default-noeyes-notongue-noexpression-nobreasts-notoes", "default-noeyes-notongue-noexpression-nobreasts-notoes-nohands"],
                                                     value=default_rig_value)
