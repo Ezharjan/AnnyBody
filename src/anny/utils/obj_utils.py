@@ -43,9 +43,16 @@ def load_obj_file(mesh_filename,
                     if len(face_vertex_indices) > 0:
                         groups[group_name] = dict(face_vertex_indices=torch.as_tensor(face_vertex_indices), face_texture_coordinate_indices=torch.as_tensor(face_texture_coordinate_indices))
                     # Initialize group data
-                    face_vertex_indices = []
-                    face_texture_coordinate_indices = []
                     group_name = split[1]
+                    if group_name in groups:
+                        # Continue adding to existing group
+                        print("Warning: group {} already exists, continuing to add faces to it.".format(group_name))
+                        face_vertex_indices = groups[group_name]['face_vertex_indices'].numpy().tolist()
+                        face_texture_coordinate_indices = groups[group_name]['face_texture_coordinate_indices'].numpy().tolist()
+                    else:
+                        face_vertex_indices = []
+                        face_texture_coordinate_indices = []
+                    
                 elif split[0] == "f":
                     vids = []
                     vtids = []
