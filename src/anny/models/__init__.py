@@ -105,9 +105,8 @@ def create_fullbody_model(rig="default",
                                             skinning_method=skinning_method,
                                             cache_dirname=cache_dirname)
     else:
-        return anny.models.retopology.create_alternative_topology_model(
-                            rig=rig,
-                            topology=topology,
+        if topology == "smplx":
+            return anny.models.retopology.create_smplx_topology_model(rig=rig,
                             all_phenotypes=all_phenotypes,
                             bones_to_remove=bones_to_remove,
                             default_pose_parameterization=default_pose_parameterization,
@@ -115,6 +114,17 @@ def create_fullbody_model(rig="default",
                             local_changes=local_changes,
                             skinning_method=skinning_method,
                             cache_dirname=cache_dirname)
+        else:
+            return anny.models.retopology.create_alternative_topology_model(
+                                rig=rig,
+                                topology=topology,
+                                all_phenotypes=all_phenotypes,
+                                bones_to_remove=bones_to_remove,
+                                default_pose_parameterization=default_pose_parameterization,
+                                extrapolate_phenotypes=extrapolate_phenotypes,
+                                local_changes=local_changes,
+                                skinning_method=skinning_method,
+                                cache_dirname=cache_dirname)
 
 def create_hand_model(side='R',
                       local_changes=False,

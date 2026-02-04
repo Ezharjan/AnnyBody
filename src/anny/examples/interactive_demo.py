@@ -138,6 +138,8 @@ def main(server_name : str = None, server_port : int = None):
                 model = anny.create_fullbody_model(rig=rig, topology="notoes_collapse10pc", local_changes=True, extrapolate_phenotypes=extrapolate_phenotypes, remove_unattached_vertices=True)
             elif model_type == "notoes_collapse5pc":
                 model = anny.create_fullbody_model(rig=rig, topology="notoes_collapse5pc", local_changes=True, extrapolate_phenotypes=extrapolate_phenotypes, remove_unattached_vertices=True)                
+            elif model_type == "smplx":
+                model = anny.create_fullbody_model(rig=rig, topology="smplx", local_changes=True, extrapolate_phenotypes=extrapolate_phenotypes, remove_unattached_vertices=True)
             elif model_type == "right hand":
                 model = anny.create_hand_model(side='R', extrapolate_phenotypes=extrapolate_phenotypes)
             elif model_type == "left hand":
@@ -199,8 +201,8 @@ def main(server_name : str = None, server_port : int = None):
         with gr.Blocks(title="Anny Model", css="#control-column { max-width: 60pt; }") as demo:
             with gr.Row():
                 with gr.Column("compact", elem_id="control-column"):
-                    model_dropdown = gr.Dropdown(label="Model",
-                                                    choices=["default", "left hand", "right hand", "head", "notoes_collapse10pc", "notoes_collapse5pc"], value=default_model_value)
+                    model_dropdown = gr.Dropdown(label="Topology",
+                                                    choices=["default", "smplx", "left hand", "right hand", "head", "notoes_collapse10pc", "notoes_collapse5pc"], value=default_model_value)
                     rig_dropdown = gr.Dropdown(label="Rig",
                                                     choices=["default", "mixamo", "default-noeyes-notongue-noexpression-nobreasts-notoes", "default-noeyes-notongue-noexpression-nobreasts-notoes-nohands"],
                                                     value=default_rig_value)
@@ -322,7 +324,7 @@ def main(server_name : str = None, server_port : int = None):
 
             def reset_bone_rotvec(bone_index):
                 """
-                Called when the reset all button is clicked."""
+                Called when the reset all button is clicked.""" 
                 bones_rotvec.zero_()
                 return *export_mesh(), bones_rotvec[bone_index, 0].item(), bones_rotvec[bone_index, 1].item(), bones_rotvec[bone_index, 2].item()
             reset_pose_button.click(reset_bone_rotvec, inputs=[bone_dropdown], outputs=[model3d, download_params_button, measurements_summary, x_slider, y_slider, z_slider])

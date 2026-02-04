@@ -442,6 +442,9 @@ def create_model(rig = "default",
         # Filter out local changes that are not needed
         local_changes_mask = [False] * len(cached_dict["local_change_labels"])
         if local_changes == True:
+            # Keep all local changes except for nipple-related ones
+            local_changes_mask = ["nipple" not in label.lower() for label in cached_dict["local_change_labels"]]
+        elif local_changes == "all":
             local_changes_mask = [True] * len(cached_dict["local_change_labels"])
         elif isinstance(local_changes, list) or isinstance(local_changes, tuple):
             for label in local_changes:

@@ -15,8 +15,9 @@ Anny models a large variety of human body shapes, from infants to elders, using 
 - Anny is open-source and free.
 
 ### News
- - **2025-11-21**: support for different mesh topologies.
- - **2025-11-05**: initial release.
+ - **2026-02-04**: v0.3: "smplx" topology available for interoperability with [SMPL-X](https://smpl-x.is.tue.mpg.de/) (non-commercial use only). Nipple blend shapes excluded from default settings (use `local_changes="all"` for backward compatibility).
+ - **2025-11-21**: v0.2: support for different mesh topologies.
+ - **2025-11-05**: v0.1: initial release.
 
 ## Installation
 
@@ -58,3 +59,5 @@ python -m anny.examples.interactive_demo
 The code of Anny, Copyright (c) 2025 NAVER Corp., is licensed under the Apache License, Version 2.0 (see [LICENSE](LICENSE)).
 
 **data/mpfb2**: *Anny* relies on [MakeHuman](https://static.makehumancommunity.org/) assets adapted from [MPFB2](https://github.com/makehumancommunity/mpfb2/) that are licensed under the [CC0 1.0 Universal](src/anny/data/mpfb2/LICENSE.md) License.
+
+**smplx**: A "smplx" topology can be downloaded for non-commercial use only, allowing interoperability with [SMPL-X](https://smpl-x.is.tue.mpg.de/). See LICENSE.txt and NOTICE.txt files in http://download.europe.naverlabs.com/humans/Anny/noncommercial.zip for more information.

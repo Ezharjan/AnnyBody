@@ -9,3 +9,49 @@ ANNY_ROOT_DIR = pathlib.Path(__file__).resolve().parent
 # Define the default cache directory as a fixed, absolute path (user-overridable)
 DEFAULT_CACHE_PATH = pathlib.Path.home() / ".cache" / "anny"
 ANNY_CACHE_DIR = pathlib.Path(os.getenv("ANNY_CACHE_DIR", str(DEFAULT_CACHE_PATH)))
+
+ANNY2SMPLX_DATA_PATH = ANNY_CACHE_DIR / "noncommercial/anny2smplx.pth"
+
+def download_noncommercial_data(cache_dir=ANNY_CACHE_DIR):
+    noncommercial_data_url = "https://download.europe.naverlabs.com/humans/Anny/noncommercial.zip"
+    dest_path = cache_dir / "noncommercial"
+
+    print("-------------------")
+    print("Downloading non-commercial data...")
+    dest_path.mkdir(parents=True, exist_ok=True)
+    zip_path = cache_dir / "noncommercial.zip"
+    
+    # Download the file
+    import requests
+    response = requests.get(noncommercial_data_url)
+    with open(zip_path, 'wb') as f:
+        f.write(response.content)
+    
+    # Unzip the file
+    import zipfile
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(dest_path)
+
+    # Show the license file
+    license_file = dest_path / "LICENSE.txt"
+    if license_file.exists():
+        print("License Information:")
+        print("---------------------")
+        with open(license_file, 'r') as f:
+            print(f.read())
+    else:
+        print("LICENSE.txt file not found.")
+    print("-------------------")
+
+    # Show the notice file
+    notice_file = dest_path / "NOTICE.txt"
+    if notice_file.exists():
+        print("-------------------")
+        with open(notice_file, 'r') as f:
+            print(f.read())
+    else:
+        print("NOTICE.txt file not found.")
+    print("-------------------")
+    
+    # Clean up the zip file
+    os.remove(zip_path)
