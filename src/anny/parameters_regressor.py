@@ -273,7 +273,7 @@ class ParametersRegressor:
 
         # computing joint position based on skinning weights
         Jt = (W[..., None] * Xt).sum(dim=2) / (W.sum(dim=2, keepdim=True) + 1e-8)  # [B, J, 3]
-        Jr = (W[..., None] * Xt).sum(dim=2) / (W.sum(dim=2, keepdim=True) + 1e-8)  # [B, J, 3]
+        Jr = (W[..., None] * Xr).sum(dim=2) / (W.sum(dim=2, keepdim=True) + 1e-8)  # [B, J, 3]
 
         # adding joints and giving more weights
         Xr_up = torch.cat([Xr, Jr[:,:,None]],2)
