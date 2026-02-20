@@ -61,3 +61,17 @@ The code of Anny, Copyright (c) 2025 NAVER Corp., is licensed under the Apache L
 **data/mpfb2**: *Anny* relies on [MakeHuman](https://static.makehumancommunity.org/) assets adapted from [MPFB2](https://github.com/makehumancommunity/mpfb2/) that are licensed under the [CC0 1.0 Universal](src/anny/data/mpfb2/LICENSE.md) License.
 
 **smplx**: A "smplx" topology can be downloaded for non-commercial use only, allowing interoperability with [SMPL-X](https://smpl-x.is.tue.mpg.de/). See LICENSE.txt and NOTICE.txt files in http://download.europe.naverlabs.com/humans/Anny/noncommercial.zip for more information.
+
+## Citation
+
+```
+@misc{brégier2025humanmeshmodelinganny,
+      title={Human Mesh Modeling for Anny Body}, 
+      author={Romain Brégier and Guénolé Fiche and Laura Bravo-Sánchez and Thomas Lucas and Matthieu Armando and Philippe Weinzaepfel and Grégory Rogez and Fabien Baradel},
+      year={2025},
+      eprint={2511.03589},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2511.03589}, 
+}
+```
