@@ -1,0 +1,4 @@
+git clone https://github.com/naver/anny.git
+ cd anny/
+ pip install anny[warp,examples]
+ python -m anny.examples.interactive_demo
